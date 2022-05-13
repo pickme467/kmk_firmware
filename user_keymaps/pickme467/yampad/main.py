@@ -32,13 +32,13 @@ keyboard.diode_orientation = DiodeOrientation.COL2ROW
 DEL_CHROME = sks((KC.LGUI(KC.K),))
 CHROME = sks((KC.LGUI(KC.C),))
 BLUETOOTH = sks((KC.LGUI(KC.B),))
-LOGIN = sks((KC.ENT, KC.N5, KC.N6, KC.N6, KC.N5, KC.ENT))
+LOGIN = sks((KC.N5, KC.N6, KC.N6, KC.N5,))
 SHUTDOWN = sks((KC.LGUI(KC.LSFT(KC.S)),))
 LAYER = KC.MO(1)
 
 keyboard.keymap = [
     [
-        KC.RGB_TOG, KC.TRNS,           KC.TRNS,             LAYER,
+        KC.RGB_TOG, KC.ENT,            KC.ESC,              LAYER,
         DEL_CHROME, KC.RGB_ANI,        KC.RGB_AND,          KC.TRNS,
         CHROME,     KC.RGB_VAI,        KC.RGB_VAD,          KC.TRNS,
         BLUETOOTH,  KC.RGB_SAI,        KC.RGB_SAD,          KC.TRNS,
