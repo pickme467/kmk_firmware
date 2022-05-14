@@ -3,6 +3,7 @@ print ("Tata is starting")
 import board
 
 from kmk.extensions.rgb import RGB, AnimationModes
+from kmk.extensions.oled import OLED
 from kmk.keys import KC
 from kmk.modules.layers import Layers
 from kmk.scanners import DiodeOrientation
@@ -42,31 +43,31 @@ keyboard.keymap = [
         DEL_CHROME, KC.RGB_ANI,        KC.RGB_AND,          KC.TRNS,
         CHROME,     KC.RGB_VAI,        KC.RGB_VAD,          KC.TRNS,
         BLUETOOTH,  KC.RGB_SAI,        KC.RGB_SAD,          KC.TRNS,
-        LOGIN,      KC.RGB_HUI,        KC.RGB_HUD,          KC.RESET
+        LOGIN,      KC.RGB_HUI,        KC.RGB_HUD,          KC.TRNS
     ],
     [
         SHUTDOWN,            KC.TRNS,             KC.TRNS,                     KC.TRNS,
         KC.TRNS,             KC.TRNS,             KC.TRNS,                     KC.TRNS,
         KC.TRNS,             KC.TRNS,             KC.TRNS,                     KC.TRNS,
         KC.RGB_MODE_BREATHE, KC.RGB_MODE_RAINBOW, KC.RGB_MODE_BREATHE_RAINBOW, KC.TRNS,
-        KC.RGB_MODE_PLAIN,   KC.RGB_MODE_KNIGHT,  KC.RGB_MODE_SWIRL,           KC.TRNS
+        KC.RGB_MODE_PLAIN,   KC.RGB_MODE_KNIGHT,  KC.RGB_MODE_SWIRL,           KC.RESET
     ]
 ]
 
 keyboard.debug_enabled = True
 
-# OLED
-import busio
-import board
-import adafruit_ssd1306
+oled_text=['Log BT Chrome Del', 'Kolory', 'Prawy dol+gora=reset']
 
-i2c = busio.I2C(board.GP27, board.GP26)
-oled = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
-oled.text('Log BT Chrome Del', 0, 0, 1)
-oled.text('Kolory', 0, 12, 1)
-oled.text('Prawy dol+gora=reset', 0, 24, 1)
-oled.show()
+oled_ext = OLED(oled_text, 10)
 
+keyboard.extensions.append(oled_ext)
+
+def show_oled(key, keyboard, *args):
+    oled_ext.display_text()
+
+for r in keyboard.keymap:
+    for k in r:
+        k.after_press_handler(show_oled)
 
 def enable_usb_storage():
     print("Enabling usb storage on subsequent restart")
@@ -75,6 +76,7 @@ def enable_usb_storage():
     import os
     os.rename('boot.py', 'boot_old.py')
 
+print("All loaded")
 
 if __name__ == '__main__':
     keyboard.go()
