@@ -62,13 +62,6 @@ oled_ext = OLED(oled_text, 10)
 
 keyboard.extensions.append(oled_ext)
 
-def show_oled(key, keyboard, *args):
-    oled_ext.display_text()
-
-for r in keyboard.keymap:
-    for k in r:
-        k.after_press_handler(show_oled)
-
 def enable_usb_storage():
     print("Enabling usb storage on subsequent restart")
     import storage
