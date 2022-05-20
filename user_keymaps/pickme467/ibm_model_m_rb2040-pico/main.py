@@ -14,18 +14,19 @@ keyboard = KMKKeyboard()
 
 keyboard.modules.append(Layers())
 
-keyboard.col_pins = (board.GP8, board.GP9, board.GP10, board.GP11, board.GP12, board.GP13, board.GP14, board.GP15, board.GP16, board.GP17,
-                     board.GP18, board.GP19, board.GP20, board.GP21, board.GP22, board.GP26,)
-keyboard.row_pins = (board.GP0, board.GP1, board.GP2, board.GP3, board.GP4, board.GP5, board.GP6, board.GP7,)
+keyboard.col_pins = ( board.GP8,  board.GP9, board.GP10, board.GP11, board.GP12, board.GP13, board.GP14, board.GP15,
+                     board.GP16, board.GP17, board.GP18, board.GP19, board.GP20, board.GP21, board.GP22, board.GP26,)
+keyboard.row_pins = ( board.GP0,  board.GP1,  board.GP2,  board.GP3,  board.GP4,  board.GP5,  board.GP6,  board.GP7,)
 keyboard.diode_orientation = DiodeOrientation.COL2ROW
 
 coord_mapping = [
-    119, 86, 85, 101, 117, 115, 113, 96, 80, 83, 67, 75, 76, 79, 63, 30,
-    87, 71, 70, 69, 68, 84, 82, 66, 65, 64, 74, 90, 81, 99, 92, 94, 93, 27, 28, 29, 13,
-    103, 55, 54, 53, 52, 100, 98, 50, 49, 48, 58, 106, 97, 19, 91, 78, 77, 59, 60, 61, 62,
-    102, 39, 38, 37, 36, 116, 114, 34, 33, 32, 42, 122, 26, 107, 108, 109, 110,
-    104, 118, 23, 22, 21, 20, 4, 2, 18, 17, 16, 10, 24, 126, 43, 44, 45, 46,
-    89, 127, 3, 15, 25, 14, 11, 12, 124, 125,]
+    119,  86, 85, 101, 117, 115, 113, 96,  80,  83, 67,  75, 76,  79,  63,  30,
+     87,  71, 70, 69,   68,  84,  82, 66,  65,  64, 74,  90, 81,  99,  92,  94,  93, 27, 28, 29, 13,
+    103,  55, 54, 53,   52, 100,  98, 50,  49,  48, 58, 106, 97,  19,  91,  78,  77, 59, 60, 61, 62,
+    102,  39, 38, 37,   36, 116, 114, 34,  33,  32, 42, 122, 26, 107, 108, 109, 110,
+    104, 118, 23, 22,   21,  20,   4,  2,  18,  17, 16,  10, 24, 126,  43,  44,  45, 46,
+     89, 127,  3, 15,   25,  14,  11, 12, 124, 125,
+]
 
 keymap_ibm_iso = [[
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -42,14 +43,14 @@ keymap_ibm_iso = [[
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     KC.LCTL,        KC.LALT,                        KC.SPC,                          KC.RALT, KC.RCTRL,             KC.LEFT, KC.DOWN, KC.RIGHT,    KC.P0,            KC.PDOT,
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ]]
+]]
 
 keyboard.keymap = keymap_ibm_iso
 keyboard.coord_mapping = coord_mapping
 
 keyboard.debug_enabled = True
 
-solenoid_ext = Solenoid()
+solenoid_ext = Solenoid(solenoid_pin = board.GP28, led_pin = board.LED)
 keyboard.extensions.append(solenoid_ext)
 
 print("All loaded")

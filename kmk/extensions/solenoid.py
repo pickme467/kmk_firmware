@@ -6,11 +6,11 @@ import digitalio
 
 class Solenoid(Extension):
 
-    def __init__(self):
-        self.solenoid = digitalio.DigitalInOut(board.GP28)
+    def __init__(self, solenoid_pin, led_pin):
+        self.solenoid = digitalio.DigitalInOut(solenoid_pin)
         self.solenoid.direction = digitalio.Direction.OUTPUT
         self.solenoid.value = False
-        self.led = digitalio.DigitalInOut(board.LED)
+        self.led = digitalio.DigitalInOut(led_pin)
         self.led.direction = digitalio.Direction.OUTPUT
         self.led.value = False
 
