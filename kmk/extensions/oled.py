@@ -34,7 +34,7 @@ class OLED(Extension):
         return
 
     def after_hid_send(self, sandbox):
-        if sandbox.matrix_update != None:
+        if self.displaying == False and sandbox.matrix_update != None:
             self.display_text()
         elif self._timer.tick() == True:
             self.hide_text()
@@ -59,10 +59,13 @@ class OLED(Extension):
 
         self._oled.show()
         self._set_timer()
+        self.displaying = True
+
 
     def hide_text(self):
         self._oled.fill(0)
         self._oled.show()
+        self.displaying = False
 
     def _set_timer(self):
         self._timer = PeriodicTimer(1000 * self.oled_off_sec)

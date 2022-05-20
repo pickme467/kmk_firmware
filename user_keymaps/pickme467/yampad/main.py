@@ -40,10 +40,10 @@ LAYER = KC.MO(1)
 keyboard.keymap = [
     [
         KC.RGB_TOG, KC.ENT,            KC.ESC,              LAYER,
-        DEL_CHROME, KC.RGB_ANI,        KC.RGB_AND,          KC.TRNS,
+        DEL_CHROME, KC.RGB_ANI,        KC.RGB_AND,          KC.SPC,
         CHROME,     KC.RGB_VAI,        KC.RGB_VAD,          KC.TRNS,
         BLUETOOTH,  KC.RGB_SAI,        KC.RGB_SAD,          KC.TRNS,
-        LOGIN,      KC.RGB_HUI,        KC.RGB_HUD,          KC.TRNS
+        LOGIN,      KC.RGB_HUI,        KC.RGB_HUD,          KC.SPC
     ],
     [
         SHUTDOWN,            KC.TRNS,             KC.TRNS,                     KC.TRNS,
