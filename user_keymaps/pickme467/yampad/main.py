@@ -36,6 +36,7 @@ BLUETOOTH = sks((KC.LGUI(KC.B),))
 LOGIN = sks((KC.N5, KC.N6, KC.N6, KC.N5,))
 SHUTDOWN = sks((KC.LGUI(KC.LSFT(KC.S)),))
 LAYER = KC.MO(1)
+TERM = sks((KC.LGUI(KC.T),))
 
 keyboard.keymap = [
     [
@@ -47,7 +48,7 @@ keyboard.keymap = [
     ],
     [
         SHUTDOWN,            KC.TRNS,             KC.TRNS,                     KC.TRNS,
-        KC.TRNS,             KC.TRNS,             KC.TRNS,                     KC.TRNS,
+        KC.TRNS,             KC.TRNS,             KC.TRNS,                     TERM,
         KC.TRNS,             KC.TRNS,             KC.TRNS,                     KC.TRNS,
         KC.RGB_MODE_BREATHE, KC.RGB_MODE_RAINBOW, KC.RGB_MODE_BREATHE_RAINBOW, KC.TRNS,
         KC.RGB_MODE_PLAIN,   KC.RGB_MODE_KNIGHT,  KC.RGB_MODE_SWIRL,           KC.RESET
