@@ -74,5 +74,13 @@ keyboard.debug_enabled = True
 
 print("All loaded")
 
+def enable_usb_storage():
+    print("Enabling usb storage on subsequent restart")
+    import storage
+    storage.remount("/", readonly=False)
+    import os
+    os.rename('boot.py', 'boot_old.py')
+
+
 if __name__ == '__main__':
     keyboard.go()
