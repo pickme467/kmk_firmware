@@ -9,8 +9,8 @@ import usb_hid
 
 # ENTER on numeric keypad: if this key is held during boot,
 # don't run the code which hides the storage and disables serial
-col = digitalio.DigitalInOut(board.GP9)
-row = digitalio.DigitalInOut(board.GP2)
+col = digitalio.DigitalInOut(board.GP12)
+row = digitalio.DigitalInOut(board.GP1)
 
 col.switch_to_output(value=True)
 row.switch_to_input(pull=digitalio.Pull.DOWN)
