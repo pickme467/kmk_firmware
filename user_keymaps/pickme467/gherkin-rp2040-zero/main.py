@@ -68,18 +68,24 @@ FNRA_X = KC.RALT(KC.X)
 FNRA_Z = KC.RALT(KC.Z)
 FN_AST = KC.LSFT(KC.N8)
 
-FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=True, tap_interrupted=True, tap_time=314)
-FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=True, tap_interrupted=True, tap_time=314)
-FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time=314)
-FN_C = KC.MT(KC.C, KC.RALT, prefer_hold=True, tap_interrupted=True, tap_time=314)
+TAPPING_TERM = 157
+SHIFT_TAPPING_TERM = 143
+ALT_TAPPING_TERM = 183 #183
+GUI_TAPPING_TERM = 183 #206
+CTRL_TAPPING_TERM = 183
 
-FN_COMM = KC.MT(KC.COMM, KC.LCTL, prefer_hold=True, tap_interrupted=True, tap_time=190)
-FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=True, tap_interrupted=True, tap_time=190)
+FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
+FN_C = KC.MT(KC.C, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
 
-FN_L = KC.MT(KC.L, KC.RSFT, prefer_hold=True, tap_interrupted=True, tap_time=157)
-FN_QUOT = KC.MT(KC.QUOT, KC.LSFT, prefer_hold=True, tap_interrupted=True, tap_time=157)
+FN_COMM = KC.MT(KC.COMM, KC.LCTL, prefer_hold=False, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
+FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=False, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
 
-FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=True, tap_time=157)
+FN_L = KC.MT(KC.L, KC.RSFT, prefer_hold=False, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
+FN_QUOT = KC.MT(KC.QUOT, KC.LSFT, prefer_hold=False, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
+
+FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=False, tap_time=TAPPING_TERM)
 
 FN_X = TD_UPPER_LOWER_MOD
 
