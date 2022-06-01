@@ -8,7 +8,7 @@ from kmk.modules.modtap import ModTap
 from kmk.modules.tapdance import TapDance
 from kmk.scanners import DiodeOrientation
 from kmk.kmk_keyboard import KMKKeyboard
-from kmk.handlers.sequences import simple_key_sequence as sks
+from kmk.handlers.sequences import send_string
 keyboard = KMKKeyboard()
 
 keyboard.modules.append(Layers())
@@ -31,6 +31,12 @@ keyboard.modules.append(TapDance())
 # from kmk.extensions.solenoid import Solenoid
 # solenoid_ext = Solenoid(solenoid_pin = board.GP26, led_pin = board.LED)
 # keyboard.extensions.append(solenoid_ext)
+
+def read_secrets():
+    s = []
+    with open('secrets.txt', 'r') as f:
+        s = f.readlines()
+    return s
 
 keyboard.col_pins = ( board.GP12,  board.GP11, board.GP10, board.GP9, board.GP26, board.GP14,)
 keyboard.row_pins = ( board.GP1,  board.GP2,  board.GP3,  board.GP4,  board.GP6,)
@@ -69,13 +75,14 @@ FNRA_Z = KC.RALT(KC.Z)
 FN_AST = KC.LSFT(KC.N8)
 
 TAPPING_TERM = 157
-SHIFT_TAPPING_TERM = 143
-ALT_TAPPING_TERM = 183 #183
-GUI_TAPPING_TERM = 183 #206
-CTRL_TAPPING_TERM = 183
+SHIFT_TAPPING_TERM = 127
+ALT_TAPPING_TERM = 147
+GUI_TAPPING_TERM = 147
+CTRL_TAPPING_TERM = 167
 
 FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
 FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+
 FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
 FN_C = KC.MT(KC.C, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
 
@@ -92,8 +99,9 @@ FN_X = TD_UPPER_LOWER_MOD
 HYPER = KC.F9
 SUPER = KC.F8
 
-MC_ROOT = KC.R
-MC_SU1 = KC.S
+secrets = read_secrets()
+MC_SU1 = send_string(secrets[0])
+MC_ROOT = send_string(secrets[1])
 
 RESET = KC.RESET
 XXXXXXX = KC.TRNS
@@ -226,7 +234,6 @@ def enable_usb_storage():
     storage.remount("/", readonly=False)
     import os
     os.rename('boot.py', 'boot_old.py')
-
 
 if __name__ == '__main__':
     keyboard.go()
