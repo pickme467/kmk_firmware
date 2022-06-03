@@ -15,22 +15,22 @@ keyboard.modules.append(Layers())
 keyboard.modules.append(ModTap())
 keyboard.modules.append(TapDance())
 
-# from kmk.extensions.rgb import RGB, AnimationModes
-# keyboard.rgb_pixel_pin = board.GP26
-# keyboard.pixel_pin = board.GP26
-# keyboard.num_pixels = 8
+from kmk.extensions.rgb import RGB, AnimationModes
+keyboard.rgb_pixel_pin = board.GP5
+keyboard.pixel_pin = board.GP5
+keyboard.num_pixels = 8
 
-# rgb_ext = RGB(pixel_pin=keyboard.rgb_pixel_pin, num_pixels=8,
-#               hue_default = 128, sat_default = 248, val_default = 16,
-#               hue_step = 8, sat_step = 8, val_step = 8,
-#               animation_speed = 4, breathe_center = 2, knight_effect_length = 4,
-#               animation_mode = AnimationModes.SWIRL)
+rgb_ext = RGB(pixel_pin=keyboard.rgb_pixel_pin, num_pixels=8,
+              hue_default = 128, sat_default = 248, val_default = 16,
+              hue_step = 8, sat_step = 8, val_step = 8,
+              animation_speed = 4, breathe_center = 2, knight_effect_length = 4,
+              animation_mode = AnimationModes.SWIRL)
 
-# keyboard.extensions.append(rgb_ext)
+keyboard.extensions.append(rgb_ext)
 
-# from kmk.extensions.solenoid import Solenoid
-# solenoid_ext = Solenoid(solenoid_pin = board.GP26, led_pin = board.LED)
-# keyboard.extensions.append(solenoid_ext)
+from kmk.extensions.solenoid import Solenoid
+solenoid_ext = Solenoid(solenoid_pin = board.GP28, led_pin = None)
+keyboard.extensions.append(solenoid_ext)
 
 def read_secrets():
     s = []
@@ -75,22 +75,22 @@ FNRA_Z = KC.RALT(KC.Z)
 FN_AST = KC.LSFT(KC.N8)
 
 TAPPING_TERM = 157
-SHIFT_TAPPING_TERM = 127
-ALT_TAPPING_TERM = 147
-GUI_TAPPING_TERM = 147
-CTRL_TAPPING_TERM = 167
+SHIFT_TAPPING_TERM = 177
+ALT_TAPPING_TERM = 177
+GUI_TAPPING_TERM = 177
+CTRL_TAPPING_TERM = 177
 
-FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
-FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=False, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=True, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=True, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
 
-FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
-FN_C = KC.MT(KC.C, KC.LALT, prefer_hold=False, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
+FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
+FN_C = KC.MT(KC.C, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
 
-FN_COMM = KC.MT(KC.COMM, KC.LCTL, prefer_hold=False, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
-FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=False, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
+FN_COMM = KC.MT(KC.COMM, KC.LCTL, prefer_hold=True, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
+FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=True, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
 
-FN_L = KC.MT(KC.L, KC.RSFT, prefer_hold=False, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
-FN_QUOT = KC.MT(KC.QUOT, KC.LSFT, prefer_hold=False, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
+FN_L = KC.MT(KC.L, KC.RSFT, prefer_hold=True, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
+FN_QUOT = KC.MT(KC.QUOT, KC.LSFT, prefer_hold=True, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
 
 FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=False, tap_time=TAPPING_TERM)
 
@@ -105,6 +105,7 @@ MC_ROOT = send_string(secrets[1])
 
 RESET = KC.RESET
 XXXXXXX = KC.TRNS
+RGB_TOG = KC.RGB_TOG
 
 KC_F1 = KC.F1
 KC_F2 = KC.F2
@@ -217,7 +218,7 @@ keyboard.keymap = [[
 ], [
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     KC_CLCK,   KC_SLCK,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC_PGUP,   XXXXXXX,   XXXXXXX,
-      RESET,   XXXXXXX,   XXXXXXX,      KC_X,   XXXXXXX,   XXXXXXX,   KC_HOME, KC_PGDOWN,    KC_END,    KC_ENT,
+      RESET,   RGB_TOG,   XXXXXXX,      KC_X,   XXXXXXX,   XXXXXXX,   KC_HOME, KC_PGDOWN,    KC_END,    KC_ENT,
 ], [
       KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,     KC_F7,     KC_F8,     KC_F9,    KC_F10,
     XXXXXXX,   XXXXXXX,   KC_VOLU,   KC_MUTE,    KC_F11,    KC_F12,    MC_SU1,   XXXXXXX,   XXXXXXX,   XXXXXXX,

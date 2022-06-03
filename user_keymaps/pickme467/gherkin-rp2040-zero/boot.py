@@ -15,8 +15,6 @@ row = digitalio.DigitalInOut(board.GP1)
 col.switch_to_output(value=True)
 row.switch_to_input(pull=digitalio.Pull.DOWN)
 
-board.board_id='Gherkin-rp2040-zero'
-
 if not row.value:
     # storage.disable_usb_drive()
     # Equivalent to usb_cdc.enable(console=False, data=False)

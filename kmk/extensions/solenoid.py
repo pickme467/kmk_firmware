@@ -10,9 +10,12 @@ class Solenoid(Extension):
         self.solenoid = digitalio.DigitalInOut(solenoid_pin)
         self.solenoid.direction = digitalio.Direction.OUTPUT
         self.solenoid.value = False
-        self.led = digitalio.DigitalInOut(led_pin)
-        self.led.direction = digitalio.Direction.OUTPUT
-        self.led.value = False
+        if None != led_pin:
+            self.led = digitalio.DigitalInOut(led_pin)
+            self.led.direction = digitalio.Direction.OUTPUT
+            self.led.value = False
+        else:
+            self.led = None
 
     def on_runtime_enable(self, sandbox):
         return
@@ -47,8 +50,10 @@ class Solenoid(Extension):
 
     def _solenoid_on(self):
         self.solenoid.value = True
-        self.led.value = True
+        if None != self.led:
+            self.led.value = True
 
     def _solenoid_off(self):
         self.solenoid.value = False
-        self.led.value = False
+        if None != self.led:
+            self.led.value = False
