@@ -8,7 +8,13 @@ from kmk.keys import KC
 from kmk.modules.layers import Layers
 from kmk.scanners import DiodeOrientation
 from kmk.kmk_keyboard import KMKKeyboard
-from kmk.handlers.sequences import simple_key_sequence as sks
+from kmk.handlers.sequences import send_string, simple_key_sequence as sks
+
+def read_secrets():
+    s = []
+    with open('secrets.txt', 'r') as f:
+        s = f.readlines()
+    return s
 
 keyboard = KMKKeyboard()
 
@@ -33,7 +39,8 @@ keyboard.diode_orientation = DiodeOrientation.COL2ROW
 DEL_CHROME = sks((KC.LGUI(KC.K),))
 CHROME = sks((KC.LGUI(KC.C),))
 BLUETOOTH = sks((KC.LGUI(KC.B),))
-LOGIN = sks((KC.N5, KC.N6, KC.N6, KC.N5,))
+secrets = read_secrets()
+LOGIN = send_string(secrets[0].replace("\n", ""))
 SHUTDOWN = sks((KC.LGUI(KC.LSFT(KC.S)),))
 LAYER = KC.MO(1)
 TERM = sks((KC.LGUI(KC.T),))

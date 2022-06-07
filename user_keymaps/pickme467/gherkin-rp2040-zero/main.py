@@ -21,10 +21,7 @@ keyboard.pixel_pin = board.GP5
 keyboard.num_pixels = 8
 
 rgb_ext = RGB(pixel_pin=keyboard.rgb_pixel_pin, num_pixels=8,
-              hue_default = 128, sat_default = 248, val_default = 16,
-              hue_step = 8, sat_step = 8, val_step = 8,
-              animation_speed = 4, breathe_center = 2, knight_effect_length = 4,
-              animation_mode = AnimationModes.SWIRL)
+              val_default=10, animation_mode = AnimationModes.SWIRL)
 
 keyboard.extensions.append(rgb_ext)
 
@@ -80,7 +77,7 @@ ALT_TAPPING_TERM = 177
 GUI_TAPPING_TERM = 177
 CTRL_TAPPING_TERM = 177
 
-FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=True, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
+FN_P = KC.MT(KC.P, KC.LGUI, prefer_hold=False, tap_interrupted=False, tap_time=GUI_TAPPING_TERM)
 FN_G = KC.MT(KC.G, KC.RGUI, prefer_hold=True, tap_interrupted=True, tap_time=GUI_TAPPING_TERM)
 
 FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
@@ -217,8 +214,8 @@ keyboard.keymap = [[
   KC_DELETE,     SUPER,   XXXXXXX,     HYPER,    FNRA_X,      KC_B,   KC_LEFT,   KC_DOWN,   KC_RIGHT,    FNRA_Z,
 ], [
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    KC_CLCK,   KC_SLCK,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC_PGUP,   XXXXXXX,   XXXXXXX,
-      RESET,   RGB_TOG,   XXXXXXX,      KC_X,   XXXXXXX,   XXXXXXX,   KC_HOME, KC_PGDOWN,    KC_END,    KC_ENT,
+    KC_CLCK,   KC_SLCK,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC_PGUP,   XXXXXXX,   RGB_TOG,
+      RESET,   XXXXXXX,   XXXXXXX,      KC_X,   XXXXXXX,   XXXXXXX,   KC_HOME, KC_PGDOWN,    KC_END,    KC_ENT,
 ], [
       KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,     KC_F7,     KC_F8,     KC_F9,    KC_F10,
     XXXXXXX,   XXXXXXX,   KC_VOLU,   KC_MUTE,    KC_F11,    KC_F12,    MC_SU1,   XXXXXXX,   XXXXXXX,   XXXXXXX,
