@@ -24,6 +24,7 @@ rgb_ext = RGB(pixel_pin=keyboard.rgb_pixel_pin, num_pixels=8,
               val_default=10, animation_mode = AnimationModes.SWIRL)
 
 keyboard.extensions.append(rgb_ext)
+rgb_ext._rgb_tog()
 
 from kmk.extensions.solenoid import Solenoid
 solenoid_ext = Solenoid(solenoid_pin = board.GP28, led_pin = None)
@@ -84,7 +85,7 @@ FN_DOT = KC.MT(KC.DOT, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time
 FN_C = KC.MT(KC.C, KC.LALT, prefer_hold=True, tap_interrupted=True, tap_time=ALT_TAPPING_TERM)
 
 FN_COMM = KC.MT(KC.COMM, KC.LCTL, prefer_hold=True, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
-FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=True, tap_interrupted=True, tap_time=CTRL_TAPPING_TERM)
+FN_R = KC.MT(KC.R, KC.RCTL, prefer_hold=False, tap_interrupted=False, tap_time=CTRL_TAPPING_TERM)
 
 FN_L = KC.MT(KC.L, KC.RSFT, prefer_hold=True, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)
 FN_QUOT = KC.MT(KC.QUOT, KC.LSFT, prefer_hold=True, tap_interrupted=True, tap_time=SHIFT_TAPPING_TERM)

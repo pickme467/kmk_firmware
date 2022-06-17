@@ -72,7 +72,7 @@ class HoldTap(Module):
             # if interrupt on release: store interrupting keys until one of them
             # is released.
             if key.meta.tap_interrupted:
-                if is_pressed:
+                if is_pressed and current_key is not None:
                     self.key_buffer.append((int_coord, current_key))
                     current_key = None
 
