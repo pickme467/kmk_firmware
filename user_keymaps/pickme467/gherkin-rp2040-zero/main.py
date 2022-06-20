@@ -114,7 +114,7 @@ keyboard.keymap = [[
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,      KC.B,      KC.X,   XXXXXXX,   XXXXXXX,   XXXXXXX,
 ]]
 
-keyboard.debug_enabled = True
+keyboard.debug_enabled = False
 
 print("All loaded")
 
