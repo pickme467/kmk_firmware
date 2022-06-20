@@ -50,19 +50,14 @@ keyboard.coord_mapping = [
 BASE = 0
 NUMBERS = 1
 RALTS = 2
-FUNCTIONS = 3
-STRINGS = 4
-MOD = 5
+SWITCHES = 3
+EXTRA = 4
+
+# Modifier + key
+FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=False, tap_time=115)
 
 # Tap Dance
-
-FN_MOD = KC.MO(MOD)
-
-TD_LAYR = KC.TD(KC.MO(NUMBERS), KC.MO(FUNCTIONS), KC.MO(STRINGS))
-TD_RALT = KC.TD(KC.MO(RALTS), KC.LM(RALTS, KC.LCTL), KC.LGUI)
-TD_LALT = KC.TD(KC.LALT, KC.RSFT(KC.LALT), KC.LALT(KC.LGUI))
-TD_RSFT = KC.TD(KC.RSFT, KC.LGUI, KC.RSFT(KC.LGUI), KC.LALT(KC.RSFT(KC.LGUI)))
-TD_LCTL = KC.TD(KC.LCTL, KC.LM(NUMBERS, KC.LCTL), KC.LM(FUNCTIONS, KC.LCTL))
+FN_X = KC.TD(KC.MO(SWITCHES), KC.MO(NUMBERS), KC.MO(EXTRA))
 
 # Keys
 FNRA_A = KC.RALT(KC.A)
@@ -86,33 +81,39 @@ MC_ROOT = send_string(secrets[1])
 XXXXXXX = KC.TRNS
 RGB_TOG = KC.RGB_TOG
 
-keyboard.keymap = [[
-     FN_MOD,   KC.COMM,    KC.DOT,      KC.P,      KC.Y,      KC.F,      KC.G,      KC.C,      KC.R,      KC.L,
+keyboard.keymap = [
+    # BASE
+    [
+     KC.QUOT,  KC.COMM,    KC.DOT,      KC.P,      KC.Y,      KC.F,      KC.G,      KC.C,      KC.R,      KC.L,
        KC.A,      KC.O,      KC.E,      KC.U,      KC.I,      KC.D,      KC.H,      KC.T,      KC.N,      KC.S,
-    KC.SCLN,      KC.Q,   TD_RALT,   TD_LCTL,   TD_LAYR,   TD_RSFT,    KC.SPC,   TD_LALT,      KC.V,      KC.Z,
-], [
+    KC.SCLN,      KC.Q,      FN_J,      KC.K,      FN_X,    KC.SPC,      KC.M,      KC.W,      KC.V,      KC.Z,
+    ],
+    # NUMBERS
+    [
     KC.BSLS,   KC.COMM,    KC.DOT,   KC.PIPE,    FN_AST,   KC.QUES,     KC.N1,     KC.N2,     KC.N3,     KC.N0,
-     KC.TAB,    KC.EQL,   KC.PLUS,   KC.UNDS,   KC.MINS,   KC.SLSH,     KC.N4,     KC.N5,     KC.N6,   KC.BSPC,
-     KC.ESC,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   TD_RSFT,     KC.N7,     KC.N8,     KC.N9,    KC.ENT,
-], [
+    KC.CLCK,    KC.EQL,   KC.PLUS,   KC.UNDS,   KC.MINS,   KC.SLSH,     KC.N4,     KC.N5,     KC.N6,   KC.BSPC,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,     KC.N7,     KC.N8,     KC.N9,    KC.ENT,
+    ],
+    # RALTS
+    [
   KC.INSERT,    KC.GRV,   KC.TILD,   KC.LBRC,   KC.LABK,   KC.RABK,   KC.RBRC,    FNRA_C,    XXXXXXX,    FNRA_L,
      FNRA_A,    FNRA_O,    FNRA_E,   KC.LPRN,   KC.LCBR,   KC.RCBR,   KC.RPRN,     KC.UP,     FNRA_N,    FNRA_S,
-  KC.DELETE,     SUPER,   XXXXXXX,     HYPER,    FNRA_X,   TD_RSFT,   KC.LEFT,   KC.DOWN,   KC.RIGHT,    FNRA_Z,
-], [
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    KC.CLCK,   KC.SLCK,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC.PGUP,   XXXXXXX,   RGB_TOG,
-   KC.RESET,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,   TD_RSFT,   KC.HOME, KC.PGDOWN,    KC.END,    KC.ENT,
-], [
+  KC.DELETE,     SUPER,   XXXXXXX,     HYPER,    FNRA_X,      KC.B,   KC.LEFT,   KC.DOWN,   KC.RIGHT,    FNRA_Z,
+    ],
+    # SWITCHES
+    [
+    KC.LSFT,   KC.LCTL,   KC.LALT,   KC.LGUI,   XXXXXXX,   XXXXXXX,   KC.RGUI,   KC.LALT,   KC.RCTL,   KC.RSFT,
+     KC.TAB,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC.PGUP,   XXXXXXX,   KC.BSPC,
+     KC.ESC,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,   KC.HOME, KC.PGDOWN,    KC.END,    KC.ENT,
+    ],
+    # EXTRA
+    [
       KC.F1,     KC.F2,     KC.F3,     KC.F4,     KC.F5,     KC.F6,     KC.F7,     KC.F8,     KC.F9,    KC.F10,
-    XXXXXXX,   XXXXXXX,   KC.VOLU,   KC.MUTE,    KC.F11,    KC.F12,    MC_SU1,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   KC.VOLD,   XXXXXXX,   XXXXXXX,   TD_RSFT,   MC_ROOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-], [
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   KC.QUOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,      KC.J,      KC.K,      KC.X,      KC.B,      KC.M,      KC.W,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   TD_RSFT,    KC.SPC,   TD_LALT,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   KC.SLCK,   KC.VOLU,   KC.MUTE,    KC.F11,    KC.F12,    MC_SU1,   XXXXXXX,   XXXXXXX,   RGB_TOG,
+   KC.RESET,   XXXXXXX,   KC.VOLD,   XXXXXXX,   XXXXXXX,   XXXXXXX,   MC_ROOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,
 ]]
 
-keyboard.debug_enabled = True
+keyboard.debug_enabled = False
 
 print("All loaded")
 
