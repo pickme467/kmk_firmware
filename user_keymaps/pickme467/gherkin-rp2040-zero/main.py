@@ -49,15 +49,15 @@ keyboard.coord_mapping = [
 # Layers
 BASE = 0
 NUMBERS = 1
-RALTS = 2
-SWITCHES = 3
+SWITCHES = 2
+RALTS = 3
 EXTRA = 4
 
 # Modifier + key
-FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=False, tap_time=115)
+FN_J = KC.LT(RALTS, KC.J, prefer_hold=True, tap_interrupted=False, tap_time=157)
 
 # Tap Dance
-FN_X = KC.TD(KC.MO(SWITCHES), KC.MO(NUMBERS), KC.MO(EXTRA))
+FN_X = KC.TD(KC.MO(NUMBERS), KC.MO(SWITCHES), KC.MO(EXTRA))
 
 # Keys
 FNRA_A = KC.RALT(KC.A)
@@ -91,20 +91,20 @@ keyboard.keymap = [
     # NUMBERS
     [
     KC.BSLS,   KC.COMM,    KC.DOT,   KC.PIPE,    FN_AST,   KC.QUES,     KC.N1,     KC.N2,     KC.N3,     KC.N0,
-    KC.CLCK,    KC.EQL,   KC.PLUS,   KC.UNDS,   KC.MINS,   KC.SLSH,     KC.N4,     KC.N5,     KC.N6,   KC.BSPC,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,     KC.N7,     KC.N8,     KC.N9,    KC.ENT,
+     KC.TAB,    KC.EQL,   KC.PLUS,   KC.UNDS,   KC.MINS,   KC.SLSH,     KC.N4,     KC.N5,     KC.N6,   KC.BSPC,
+     KC.ESC,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,     KC.N7,     KC.N8,     KC.N9,    KC.ENT,
+    ],
+    # SWITCHES
+    [
+    KC.LSFT,   KC.LCTL,   KC.LALT,   KC.LGUI,   XXXXXXX,   XXXXXXX,   KC.RGUI,   KC.LALT,   KC.RCTL,   KC.RSFT,
+    KC.CLCK,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC.PGUP,   XXXXXXX,   KC.BSPC,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,   KC.HOME, KC.PGDOWN,    KC.END,    KC.ENT,
     ],
     # RALTS
     [
   KC.INSERT,    KC.GRV,   KC.TILD,   KC.LBRC,   KC.LABK,   KC.RABK,   KC.RBRC,    FNRA_C,    XXXXXXX,    FNRA_L,
      FNRA_A,    FNRA_O,    FNRA_E,   KC.LPRN,   KC.LCBR,   KC.RCBR,   KC.RPRN,     KC.UP,     FNRA_N,    FNRA_S,
   KC.DELETE,     SUPER,   XXXXXXX,     HYPER,    FNRA_X,      KC.B,   KC.LEFT,   KC.DOWN,   KC.RIGHT,    FNRA_Z,
-    ],
-    # SWITCHES
-    [
-    KC.LSFT,   KC.LCTL,   KC.LALT,   KC.LGUI,   XXXXXXX,   XXXXXXX,   KC.RGUI,   KC.LALT,   KC.RCTL,   KC.RSFT,
-     KC.TAB,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC.PGUP,   XXXXXXX,   KC.BSPC,
-     KC.ESC,   XXXXXXX,   XXXXXXX,      KC.X,   XXXXXXX,      KC.B,   KC.HOME, KC.PGDOWN,    KC.END,    KC.ENT,
     ],
     # EXTRA
     [
